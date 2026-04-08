@@ -1,74 +1,21 @@
-import { useAnimations, useGLTF } from "@react-three/drei";
+import { useTexture } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useRef } from "react";
 import type { Group, Mesh } from "three";
 import { MathUtils } from "three";
 import { AVATAR_MOTION } from "../../effects/avatar";
 
-const AVATAR_URL =
-  "https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Models@main/2.0/RobotExpressive/glTF/RobotExpressive.gltf";
-
-type MorphMesh = Mesh & {
-  morphTargetDictionary?: Record<string, number>;
-  morphTargetInfluences?: number[];
-};
-type AvatarRuntimeData = {
-  morphMeshes: MorphMesh[];
-  headBone: Group | null;
-  eyeLeft: Group | null;
-  eyeRight: Group | null;
-};
-
-function setMorph(meshes: MorphMesh[], key: string, value: number) {
-  meshes.forEach((mesh) => {
-    const dictionary = mesh.morphTargetDictionary;
-    const influences = mesh.morphTargetInfluences;
-    if (!dictionary || !influences) return;
-    const index = dictionary[key];
-    if (typeof index === "number" && influences[index] !== undefined) {
-      influences[index] = value;
-    }
-  });
-}
+const AVATAR_IMAGE_URL = "/images/pulkit-professional.png";
 
 export function AvatarRig({ reducedMotion }: { reducedMotion: boolean }) {
   const root = useRef<Group>(null);
-  const { scene, animations } = useGLTF(AVATAR_URL);
-  const { actions } = useAnimations(animations, root);
+  const portrait = useRef<Mesh>(null);
+  const card = useRef<Mesh>(null);
+  const glow = useRef<Mesh>(null);
+  const texture = useTexture(AVATAR_IMAGE_URL);
   const pointerTarget = useRef({ x: 0, y: 0 });
   const blink = useRef(0);
   const nextBlinkAt = useRef(2 + Math.random() * 3);
-
-  const data = useMemo<AvatarRuntimeData>(() => {
-    const cache: AvatarRuntimeData = {
-      morphMeshes: [],
-      headBone: null,
-      eyeLeft: null,
-      eyeRight: null,
-    };
-
-    scene.traverse((obj) => {
-      const lower = obj.name.toLowerCase();
-      if ("isMesh" in obj) {
-        const mesh = obj as MorphMesh;
-        if (mesh.morphTargetDictionary) cache.morphMeshes.push(mesh);
-      }
-      if (!cache.headBone && (lower.includes("head") || lower.includes("neck"))) cache.headBone = obj as Group;
-      if (!cache.eyeLeft && lower.includes("eye") && lower.includes("left")) cache.eyeLeft = obj as Group;
-      if (!cache.eyeRight && lower.includes("eye") && lower.includes("right")) cache.eyeRight = obj as Group;
-    });
-
-    return cache;
-  }, [scene]);
-
-  useEffect(() => {
-    const idle = actions?.Idle ?? Object.values(actions ?? {})[0];
-    if (!idle) return;
-    idle.reset().fadeIn(0.4).play();
-    return () => {
-      idle.fadeOut(0.25);
-    };
-  }, [actions]);
 
   useEffect(() => {
     const onPointer = (e: PointerEvent) => {
@@ -100,60 +47,50 @@ export function AvatarRig({ reducedMotion }: { reducedMotion: boolean }) {
     root.current.position.y =
       Math.sin(t * AVATAR_MOTION.breathFrequency) * AVATAR_MOTION.breathAmplitude * intensity;
 
-    if (data.headBone) {
-      data.headBone.rotation.y = MathUtils.lerp(
-        data.headBone.rotation.y,
-        pointerTarget.current.x * 0.12 * intensity + Math.sin(t * 0.45) * 0.06,
+    if (portrait.current) {
+      portrait.current.rotation.y = MathUtils.lerp(
+        portrait.current.rotation.y,
+        pointerTarget.current.x * 0.08 * intensity + Math.sin(t * 0.45) * 0.03,
         0.08
       );
-      data.headBone.rotation.x = MathUtils.lerp(
-        data.headBone.rotation.x,
-        -pointerTarget.current.y * 0.06 * intensity + Math.sin(t * 0.3) * 0.03,
+      portrait.current.rotation.x = MathUtils.lerp(
+        portrait.current.rotation.x,
+        -pointerTarget.current.y * 0.06 * intensity + Math.sin(t * 0.35) * 0.02,
         0.08
       );
     }
 
-    [data.eyeLeft, data.eyeRight].forEach((eye) => {
-      if (!eye) return;
-      eye.rotation.y = MathUtils.lerp(
-        eye.rotation.y,
-        pointerTarget.current.x * AVATAR_MOTION.eyeY * intensity,
-        0.12
-      );
-      eye.rotation.x = MathUtils.lerp(
-        eye.rotation.x,
-        -pointerTarget.current.y * AVATAR_MOTION.eyeX * intensity,
-        0.12
-      );
-    });
+    if (card.current) card.current.rotation.y = MathUtils.lerp(card.current.rotation.y, root.current.rotation.y * 0.45, 0.05);
+    if (glow.current) glow.current.rotation.z = Math.sin(t * 0.6) * 0.08;
 
     if (blink.current >= nextBlinkAt.current) {
-      setMorph(data.morphMeshes, "Blink", 1);
-      setMorph(data.morphMeshes, "blink", 1);
-      setMorph(data.morphMeshes, "eyeBlinkLeft", 1);
-      setMorph(data.morphMeshes, "eyeBlinkRight", 1);
-      setMorph(data.morphMeshes, "mouthSmile", 0.2 + Math.sin(t * 0.5) * 0.1);
+      if (portrait.current) portrait.current.scale.y = MathUtils.lerp(portrait.current.scale.y, 0.985, 0.6);
       nextBlinkAt.current = blink.current + 0.14 + Math.random() * 0.12;
     } else if (blink.current > nextBlinkAt.current - 0.35) {
-      setMorph(data.morphMeshes, "Blink", 0);
-      setMorph(data.morphMeshes, "blink", 0);
-      setMorph(data.morphMeshes, "eyeBlinkLeft", 0);
-      setMorph(data.morphMeshes, "eyeBlinkRight", 0);
+      if (portrait.current) portrait.current.scale.y = MathUtils.lerp(portrait.current.scale.y, 1, 0.45);
       if (blink.current > nextBlinkAt.current) {
         blink.current = 0;
         nextBlinkAt.current = 2 + Math.random() * 3;
       }
     }
-
-    setMorph(data.morphMeshes, "browInnerUp", 0.04 + Math.sin(t * 0.5) * 0.02);
-    setMorph(data.morphMeshes, "mouthSmile", 0.07 + Math.sin(t * 0.9) * 0.02);
   });
 
   return (
-    <group ref={root} position={[0, -1.9, 0]} scale={1.95}>
-      <primitive object={scene} />
+    <group ref={root} position={[0, -1.15, 0]} scale={1.7}>
+      <mesh ref={glow} position={[0, 0.08, -0.18]}>
+        <circleGeometry args={[1.18, 48]} />
+        <meshBasicMaterial color="#8b5cf6" transparent opacity={0.22} />
+      </mesh>
+
+      <mesh ref={card} position={[0, 0.05, -0.03]} castShadow receiveShadow>
+        <boxGeometry args={[1.32, 1.85, 0.06]} />
+        <meshStandardMaterial color="#0b0d1a" roughness={0.35} metalness={0.15} />
+      </mesh>
+
+      <mesh ref={portrait} castShadow receiveShadow>
+        <planeGeometry args={[1.18, 1.72, 1, 1]} />
+        <meshStandardMaterial map={texture} roughness={0.55} metalness={0.04} />
+      </mesh>
     </group>
   );
 }
-
-useGLTF.preload(AVATAR_URL);
