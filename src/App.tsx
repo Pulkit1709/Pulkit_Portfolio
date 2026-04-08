@@ -171,7 +171,7 @@ function App() {
             ))}
           </div>
         </div>
-        <div className="signature-strip mt-8 rounded-2xl border border-violet-300/30 bg-gradient-to-r from-violet-500/10 via-cyan-400/10 to-transparent px-5 py-4 text-sm text-slate-100 md:text-base">
+        <div className="signature-strip mt-8 rounded-2xl border border-violet-300/30 bg-gradient-to-r from-violet-500/10 via-cyan-400/10 to-transparent px-5 py-4 text-center text-sm text-slate-100 md:text-base">
           I don&apos;t just train models - I engineer intelligent systems that deliver measurable impact.
         </div>
       </section>
