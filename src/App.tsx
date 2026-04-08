@@ -10,6 +10,13 @@ type ProjectCard = {
   impact: string;
   stack: string[];
 };
+type ExperienceItem = {
+  role: string;
+  summary: string;
+  badge: string;
+  certificateImage: string;
+  certificateLink?: string;
+};
 
 const projectCards: ProjectCard[] = [
   {
@@ -37,12 +44,34 @@ const projectCards: ProjectCard[] = [
     stack: ["PyTorch", "Hugging Face", "Stable Diffusion", "CLIP/FID"],
   },
 ];
+const experienceItems: ExperienceItem[] = [
+  {
+    role: "Data Science Intern - Imarticus Learning",
+    summary:
+      "Analyzed 50K+ transactions and shipped ML forecasting models up to 92% accuracy with ARIMA and RFM segmentation.",
+    badge: "ML + Analytics",
+    certificateImage: "/images/certificate-imarticus.png",
+  },
+  {
+    role: "Software Developer Intern - Nirmal Engineering Works",
+    summary: "Built MERN APIs handling 10K+ requests and improved MongoDB performance by 60%.",
+    badge: "MERN + APIs",
+    certificateImage: "/images/certificate-nirmal.png",
+  },
+  {
+    role: "Python Developer Intern - OctaNet",
+    summary: "Automated ETL and Flask workflow pipelines processing 500K+ records with 96% time reduction.",
+    badge: "Automation + ETL",
+    certificateImage: "/images/certificate-octanet.png",
+  },
+];
 
 function App() {
   const isMobile = useIsMobile();
   const [progress, setProgress] = useState(0);
   const [activeSection, setActiveSection] = useState<(typeof sectionIds)[number]>("hero");
   const [selectedProject, setSelectedProject] = useState<ProjectCard | null>(null);
+  const [selectedExperience, setSelectedExperience] = useState<ExperienceItem | null>(null);
   useUIEffects(!isMobile);
 
   useEffect(() => {
@@ -75,7 +104,7 @@ function App() {
     () => [
       { value: "9.14", label: "CGPA", detail: "Dean's List for 2 semesters" },
       { value: "3", label: "Internships", detail: "Cross-domain delivery experience" },
-      { value: "500+", label: "DSA Problems", detail: "300+ LeetCode + 200+ GFG" },
+      { value: "300+", label: "DSA Problems", detail: "LeetCode problems solved" },
       { value: "92%", label: "ML Accuracy", detail: "Production-grade model performance" },
       { value: "50K+", label: "Data Points", detail: "Analyzed and modeled at scale" },
       { value: "96%", label: "Automation Gain", detail: "Workflow time reduction" },
@@ -222,18 +251,22 @@ function App() {
       <section id="experience" className="reveal-section relative z-10 mx-auto max-w-6xl border-t border-white/10 px-6 py-28 md:px-10">
         <p className="text-sm uppercase tracking-[0.35em] text-fuchsia-300/80">Experience</p>
         <div className="mt-6 space-y-5">
-          <article className="rounded-2xl border border-white/10 bg-white/5 p-6">
-            <h3 className="text-xl font-semibold">Data Science Intern - Imarticus Learning</h3>
-            <p className="mt-2 text-slate-300">Analyzed 50K+ transactions and shipped ML forecasting models up to 92% accuracy with ARIMA and RFM segmentation.</p>
-          </article>
-          <article className="rounded-2xl border border-white/10 bg-white/5 p-6">
-            <h3 className="text-xl font-semibold">Software Developer Intern - Nirmal Engineering Works</h3>
-            <p className="mt-2 text-slate-300">Built MERN APIs handling 10K+ requests and improved MongoDB performance by 60%.</p>
-          </article>
-          <article className="rounded-2xl border border-white/10 bg-white/5 p-6">
-            <h3 className="text-xl font-semibold">Python Developer Intern - OctaNet</h3>
-            <p className="mt-2 text-slate-300">Automated ETL and Flask workflow pipelines processing 500K+ records with 96% time reduction.</p>
-          </article>
+          {experienceItems.map((item) => (
+            <button
+              key={item.role}
+              type="button"
+              data-magnetic="true"
+              className="exp-card group relative w-full overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 text-left"
+              onClick={() => setSelectedExperience(item)}
+            >
+              <div className="exp-orb exp-orb-a" />
+              <div className="exp-orb exp-orb-b" />
+              <p className="exp-badge text-xs uppercase tracking-[0.22em] text-cyan-200/90">{item.badge}</p>
+              <h3 className="mt-2 text-xl font-semibold">{item.role}</h3>
+              <p className="mt-2 text-slate-300">{item.summary}</p>
+              <p className="mt-4 text-xs uppercase tracking-[0.2em] text-fuchsia-200/85">Click to view certificate</p>
+            </button>
+          ))}
         </div>
       </section>
 
@@ -252,6 +285,46 @@ function App() {
             >
               Close
             </button>
+          </div>
+        </div>
+      )}
+
+      {selectedExperience && (
+        <div className="fixed inset-0 z-[75] grid place-items-center bg-black/75 p-4 backdrop-blur-sm">
+          <div className="w-full max-w-2xl rounded-2xl border border-white/20 bg-[#0b0a16] p-5 md:p-6">
+            <p className="text-xs uppercase tracking-[0.28em] text-fuchsia-300/90">Experience Certificate</p>
+            <h3 className="mt-3 text-2xl font-semibold">{selectedExperience.role}</h3>
+            <p className="mt-3 text-slate-300">{selectedExperience.summary}</p>
+            <img
+              src={selectedExperience.certificateImage}
+              alt={`${selectedExperience.role} certificate`}
+              className="mt-5 h-auto w-full rounded-xl border border-white/15 object-cover"
+            />
+            <div className="mt-5 flex flex-wrap gap-3">
+              {selectedExperience.certificateLink ? (
+                <a
+                  data-magnetic="true"
+                  href={selectedExperience.certificateLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-full border border-cyan-200/35 px-5 py-2 text-sm transition hover:bg-cyan-300/15"
+                >
+                  Verify Certificate
+                </a>
+              ) : (
+                <span className="rounded-full border border-white/20 px-5 py-2 text-sm text-slate-300">
+                  Add certificate link to enable verification
+                </span>
+              )}
+              <button
+                data-magnetic="true"
+                type="button"
+                className="rounded-full border border-white/25 px-5 py-2 text-sm transition hover:bg-white/10"
+                onClick={() => setSelectedExperience(null)}
+              >
+                Close
+              </button>
+            </div>
           </div>
         </div>
       )}

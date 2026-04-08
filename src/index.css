@@ -81,6 +81,60 @@ body {
   will-change: transform;
 }
 
+.exp-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: border-color 260ms ease, box-shadow 260ms ease, transform 260ms ease;
+}
+
+.exp-card:hover {
+  border-color: rgb(217 70 239 / 45%);
+  box-shadow: 0 10px 36px rgb(192 132 252 / 17%);
+}
+
+.exp-badge {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgb(255 255 255 / 20%);
+  background: rgb(255 255 255 / 6%);
+}
+
+.exp-orb {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(34px);
+  pointer-events: none;
+  opacity: 0.28;
+  transition: transform 420ms ease, opacity 420ms ease;
+}
+
+.exp-orb-a {
+  width: 90px;
+  height: 90px;
+  right: 3%;
+  top: 12%;
+  background: rgb(34 211 238 / 70%);
+}
+
+.exp-orb-b {
+  width: 75px;
+  height: 75px;
+  left: 6%;
+  bottom: 6%;
+  background: rgb(217 70 239 / 60%);
+}
+
+.exp-card:hover .exp-orb-a {
+  transform: translate3d(-6px, -8px, 0) scale(1.08);
+  opacity: 0.4;
+}
+
+.exp-card:hover .exp-orb-b {
+  transform: translate3d(9px, 4px, 0) scale(1.07);
+  opacity: 0.38;
+}
+
 .about-shell {
   isolation: isolate;
 }

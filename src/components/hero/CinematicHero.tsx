@@ -45,32 +45,45 @@ export function CinematicHero() {
                 Gambhir
               </span>
             </h1>
-            <div className="pointer-events-auto mt-6 flex flex-wrap items-center gap-3 text-xs tracking-[0.16em] text-slate-300 md:text-sm">
-              <a
-                data-magnetic="true"
-                className="rounded-full border border-white/20 bg-white/5 px-4 py-2 transition hover:bg-white/15"
-                href="https://www.linkedin.com/in/pulkitgambhir1709/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                LinkedIn
-              </a>
-              <a
-                data-magnetic="true"
-                className="rounded-full border border-white/20 bg-white/5 px-4 py-2 transition hover:bg-white/15"
-                href="https://github.com/Pulkit1709"
-                target="_blank"
-                rel="noreferrer"
-              >
-                GitHub
-              </a>
-              <a
-                data-magnetic="true"
-                className="rounded-full border border-white/20 bg-white/5 px-4 py-2 transition hover:bg-white/15"
-                href="mailto:pulkitgambhir1709@gmail.com"
-              >
-                Email
-              </a>
+            <div className="pointer-events-auto mt-6 max-w-xl text-xs tracking-[0.16em] text-slate-300 md:text-sm">
+              <div className="flex flex-wrap items-center gap-2.5">
+                <a
+                  data-magnetic="true"
+                  className="inline-flex w-fit items-center justify-center rounded-full border border-white/20 bg-white/5 px-6 py-2 text-center transition hover:bg-white/15"
+                  href="https://www.linkedin.com/in/pulkitgambhir1709/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  LinkedIn
+                </a>
+                <a
+                  data-magnetic="true"
+                  className="inline-flex w-fit items-center justify-center rounded-full border border-white/20 bg-white/5 px-6 py-2 text-center transition hover:bg-white/15"
+                  href="https://github.com/Pulkit1709"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  GitHub
+                </a>
+                <a
+                  data-magnetic="true"
+                  className="inline-flex w-fit items-center justify-center rounded-full border border-white/20 bg-white/5 px-6 py-2 text-center transition hover:bg-white/15"
+                  href="mailto:pulkitgambhir1709@gmail.com"
+                >
+                  Email
+                </a>
+              </div>
+              <div className="mt-3">
+                <a
+                  data-magnetic="true"
+                  className="inline-flex w-fit items-center justify-center rounded-full border border-white/20 bg-white/5 px-6 py-2 text-center transition hover:bg-white/15"
+                  href="https://codolio.com/profile/Pulkit1709"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Codolio
+                </a>
+              </div>
             </div>
           </div>
 
