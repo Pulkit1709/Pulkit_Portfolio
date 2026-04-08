@@ -79,7 +79,6 @@ function App() {
       { value: "92%", label: "ML Accuracy", detail: "Production-grade model performance" },
       { value: "50K+", label: "Data Points", detail: "Analyzed and modeled at scale" },
       { value: "96%", label: "Automation Gain", detail: "Workflow time reduction" },
-      { value: "60%", label: "DB Boost", detail: "MongoDB optimization impact" },
     ],
     []
   );
@@ -142,8 +141,8 @@ function App() {
           ))}
         </div>
         <p className="text-sm uppercase tracking-[0.35em] text-violet-300/80">About</p>
-        <div className="mt-6 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="about-story space-y-5 rounded-3xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur md:p-8">
+        <div className="mt-6 grid items-start gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="about-story self-start space-y-5 rounded-3xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur md:p-8">
             <h2 className="max-w-2xl text-3xl font-semibold leading-tight md:text-5xl">
               I build <span className="gradient-word">intelligent systems</span> that scale from research to real-world{" "}
               <span className="gradient-word">impact</span>.
@@ -162,7 +161,7 @@ function App() {
             </p>
           </div>
 
-          <div className="about-metrics-grid grid gap-4 sm:grid-cols-2">
+          <div className="about-metrics-grid self-start grid gap-4 sm:grid-cols-2">
             {aboutMetrics.map((metric) => (
               <article key={metric.label} className="metric-card rounded-2xl border border-white/15 bg-white/[0.05] p-5 backdrop-blur">
                 <p className="text-3xl font-semibold tracking-tight text-white md:text-4xl">{metric.value}</p>
