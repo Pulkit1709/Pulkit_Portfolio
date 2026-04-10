@@ -9,6 +9,7 @@ type ProjectCard = {
   subtitle: string;
   impact: string;
   stack: string[];
+  href?: string;
 };
 type ExperienceItem = {
   role: string;
@@ -24,12 +25,21 @@ const projectCards: ProjectCard[] = [
     subtitle: "AI healthcare assistant with Random Forest diagnosis flow",
     impact: "88% model accuracy with actionable symptom-to-care guidance",
     stack: ["Flask", "MySQL", "Random Forest", "Python"],
+    href: "https://github.com/Pulkit1709/-medimate",
   },
   {
     title: "SportNexus",
     subtitle: "MERN platform with ML recommendation engine",
     impact: "Cosine-similarity based matching for personalized sports discovery",
     stack: ["React", "Node", "MongoDB", "Recommendation ML"],
+    href: "https://github.com/Pulkit1709/sportnexus-hub-connect",
+  },
+  {
+    title: "RAG Q&A System",
+    subtitle: "Retrieval-Augmented Generation pipeline for accurate context-aware Q&A",
+    impact: "Combines retrieval + generation for grounded answers from custom knowledge bases",
+    stack: ["Python", "RAG", "LLM", "Vector Store"],
+    href: "https://github.com/Pulkit1709/Pulkit-Gambhir-rag-pipeline",
   },
   {
     title: "E-commerce Forecasting",
@@ -239,7 +249,13 @@ function App() {
               type="button"
               data-magnetic="true"
               className="project-card group relative overflow-hidden rounded-2xl border border-white/15 bg-white/[0.05] p-5 text-left transition hover:border-cyan-200/40 hover:bg-white/[0.08] md:p-6"
-              onClick={() => setSelectedProject(project)}
+              onClick={() => {
+                if (project.href) {
+                  window.open(project.href, "_blank", "noopener,noreferrer");
+                  return;
+                }
+                setSelectedProject(project);
+              }}
             >
               <div className="absolute -right-16 -top-16 h-36 w-36 rounded-full bg-cyan-400/20 blur-2xl transition group-hover:bg-violet-400/25" />
               <p className="text-sm uppercase tracking-[0.3em] text-cyan-200/90">{project.title}</p>
@@ -252,6 +268,9 @@ function App() {
                   </span>
                 ))}
               </div>
+              {project.href && (
+                <p className="mt-4 text-xs uppercase tracking-[0.18em] text-cyan-200/85">Click to open GitHub repo</p>
+              )}
             </button>
           ))}
         </div>
