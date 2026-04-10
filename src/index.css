@@ -76,6 +76,21 @@ body {
   transform: translateY(0);
 }
 
+.mobile-section {
+  position: relative;
+}
+
+.mobile-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 15% 18%, rgb(100 94 255 / 10%), transparent 28%),
+    radial-gradient(circle at 85% 24%, rgb(34 211 238 / 8%), transparent 26%);
+  opacity: 0.7;
+}
+
 .project-card {
   transform-style: preserve-3d;
   will-change: transform;
@@ -203,6 +218,11 @@ body {
   backdrop-filter: blur(10px);
 }
 
+.modal-card {
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+}
+
 @keyframes aboutFloat {
   0% {
     transform: translate3d(0, 0, 0);
@@ -219,11 +239,41 @@ body {
 }
 
 @media (max-width: 767px) {
+  .reveal-section {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
   .about-story,
   .about-metrics-grid {
     transform: none !important;
   }
+
   .about-particles span {
     animation-duration: 10s;
+  }
+
+  .metric-card,
+  .focus-card,
+  .project-card,
+  .exp-card {
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 4%), 0 10px 30px rgb(0 0 0 / 22%);
+  }
+
+  .metric-card:hover,
+  .focus-card:hover,
+  .project-card:hover,
+  .exp-card:hover {
+    transform: none;
+  }
+
+  .exp-orb {
+    opacity: 0.18;
+    filter: blur(26px);
+  }
+
+  .signature-strip {
+    background: linear-gradient(135deg, rgb(139 92 246 / 14%), rgb(34 211 238 / 12%), transparent);
   }
 }

@@ -144,5 +144,5 @@ export const contactLinks = [
   },
   { label: "GitHub", value: "github.com/Pulkit1709", href: "https://github.com/Pulkit1709" },
   { label: "Codolio", value: "codolio.com/profile/Pulkit1709", href: "https://codolio.com/profile/Pulkit1709" },
-  { label: "Resume", value: "Download resume", href: "/resume.pdf" },
+  { label: "Resume", value: "Download resume", href: "/Pulkit_Gambhir_Resume.pdf" },
 ];

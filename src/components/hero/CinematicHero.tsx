@@ -74,15 +74,25 @@ export function CinematicHero() {
                 </a>
               </div>
               <div className="mt-3">
-                <a
-                  data-magnetic="true"
-                  className="inline-flex w-fit items-center justify-center rounded-full border border-white/20 bg-white/5 px-6 py-2 text-center transition hover:bg-white/15"
-                  href="https://codolio.com/profile/Pulkit1709"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Codolio
-                </a>
+                <div className="flex flex-wrap items-center gap-2.5">
+                  <a
+                    data-magnetic="true"
+                    className="inline-flex w-fit items-center justify-center rounded-full border border-white/20 bg-white/5 px-6 py-2 text-center transition hover:bg-white/15"
+                    href="https://codolio.com/profile/Pulkit1709"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Codolio
+                  </a>
+                  <a
+                    data-magnetic="true"
+                    className="inline-flex w-fit items-center justify-center rounded-full border border-cyan-200/30 bg-cyan-300/10 px-6 py-2 text-center transition hover:bg-cyan-300/20"
+                    href="/Pulkit_Gambhir_Resume.pdf"
+                    download="Pulkit_Gambhir_Resume.pdf"
+                  >
+                    Download Resume
+                  </a>
+                </div>
               </div>
             </div>
           </div>

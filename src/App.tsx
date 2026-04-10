@@ -163,7 +163,10 @@ function App() {
 
       <CinematicHero />
 
-      <section id="about" className="reveal-section about-shell relative z-10 mx-auto max-w-6xl px-6 py-28 md:px-10">
+      <section
+        id="about"
+        className="reveal-section about-shell mobile-section relative z-10 mx-auto max-w-6xl px-5 py-20 md:px-10 md:py-28"
+      >
         <div className="about-particles" aria-hidden="true">
           {new Array(12).fill(null).map((_, idx) => (
             <span key={`about-particle-${idx}`} style={{ ["--delay" as string]: `${idx * 0.4}s` }} />
@@ -171,45 +174,48 @@ function App() {
         </div>
         <p className="text-sm uppercase tracking-[0.35em] text-violet-300/80">About</p>
         <div className="mt-6 grid items-start gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="about-story self-start space-y-5 rounded-3xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur md:p-8">
-            <h2 className="max-w-2xl text-3xl font-semibold leading-tight md:text-5xl">
+          <div className="about-story self-start space-y-4 rounded-3xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur md:space-y-5 md:p-8">
+            <h2 className="max-w-2xl text-[2rem] font-semibold leading-tight md:text-5xl">
               I build <span className="gradient-word">intelligent systems</span> that scale from research to real-world{" "}
               <span className="gradient-word">impact</span>.
             </h2>
-            <p className="text-slate-300">
+            <p className="text-[0.96rem] leading-7 text-slate-300">
               I am Pulkit Gambhir, a B.Tech CSE (Data Science) student at Bennett University focused on{" "}
               <span className="text-white">AI</span>, ML, and modern software engineering.
             </p>
-            <p className="text-slate-300">
+            <p className="text-[0.96rem] leading-7 text-slate-300">
               I build end-to-end products where models, APIs, and interfaces work together to solve practical
               problems at scale.
             </p>
-            <p className="text-slate-300">
+            <p className="text-[0.96rem] leading-7 text-slate-300">
               What sets me apart is a research-first mindset paired with shipping discipline - I optimize for novelty,
               reliability, and measurable outcomes.
             </p>
           </div>
 
-          <div className="about-metrics-grid self-start grid gap-4 sm:grid-cols-2">
+          <div className="about-metrics-grid self-start grid gap-3 sm:grid-cols-2 md:gap-4">
             {aboutMetrics.map((metric) => (
-              <article key={metric.label} className="metric-card rounded-2xl border border-white/15 bg-white/[0.05] p-5 backdrop-blur">
-                <p className="text-3xl font-semibold tracking-tight text-white md:text-4xl">{metric.value}</p>
+              <article
+                key={metric.label}
+                className="metric-card rounded-2xl border border-white/15 bg-white/[0.06] p-4 backdrop-blur md:p-5"
+              >
+                <p className="text-[1.9rem] font-semibold tracking-tight text-white md:text-4xl">{metric.value}</p>
                 <p className="mt-2 text-xs uppercase tracking-[0.24em] text-cyan-200/90">{metric.label}</p>
                 <p className="mt-2 text-sm text-slate-300">{metric.detail}</p>
               </article>
             ))}
           </div>
         </div>
-        <div className="signature-strip mt-8 rounded-2xl border border-violet-300/30 bg-gradient-to-r from-violet-500/10 via-cyan-400/10 to-transparent px-5 py-4 text-center text-sm text-slate-100 md:text-base">
+        <div className="signature-strip mt-6 rounded-2xl border border-violet-300/30 bg-gradient-to-r from-violet-500/10 via-cyan-400/10 to-transparent px-4 py-4 text-center text-sm leading-6 text-slate-100 md:mt-8 md:px-5 md:text-base">
           I don&apos;t just train models - I engineer intelligent systems that deliver measurable impact.
         </div>
       </section>
 
-      <section className="reveal-section relative z-10 mx-auto max-w-6xl px-6 pb-10 md:px-10">
+      <section className="reveal-section mobile-section relative z-10 mx-auto max-w-6xl px-5 pb-12 md:px-10">
         <p className="text-sm uppercase tracking-[0.35em] text-cyan-300/80">What I Focus On</p>
-        <div className="mt-6 grid gap-4 md:grid-cols-3">
+        <div className="mt-5 grid gap-3 md:mt-6 md:gap-4 md:grid-cols-3">
           {focusCards.map((card) => (
-            <article key={card.title} className="focus-card rounded-2xl border border-white/12 bg-white/[0.04] p-5">
+            <article key={card.title} className="focus-card rounded-2xl border border-white/12 bg-white/[0.05] p-4 md:p-5">
               <p className="text-2xl" aria-hidden="true">
                 {card.icon}
               </p>
@@ -220,21 +226,24 @@ function App() {
         </div>
       </section>
 
-      <section id="projects" className="reveal-section relative z-10 mx-auto max-w-6xl border-t border-white/10 px-6 py-28 md:px-10">
+      <section
+        id="projects"
+        className="reveal-section mobile-section relative z-10 mx-auto max-w-6xl border-t border-white/10 px-5 py-20 md:px-10 md:py-28"
+      >
         <p className="text-sm uppercase tracking-[0.35em] text-cyan-300/80">Projects</p>
-        <h2 className="mt-4 text-3xl font-semibold md:text-5xl">High-impact AI and engineering work.</h2>
-        <div className="mt-10 grid gap-5 md:grid-cols-2">
+        <h2 className="mt-4 text-[2rem] font-semibold leading-tight md:text-5xl">High-impact AI and engineering work.</h2>
+        <div className="mt-7 grid gap-4 md:mt-10 md:gap-5 md:grid-cols-2">
           {projectCards.map((project) => (
             <button
               key={project.title}
               type="button"
               data-magnetic="true"
-              className="project-card group relative overflow-hidden rounded-2xl border border-white/15 bg-white/[0.04] p-6 text-left transition hover:border-cyan-200/40 hover:bg-white/[0.08]"
+              className="project-card group relative overflow-hidden rounded-2xl border border-white/15 bg-white/[0.05] p-5 text-left transition hover:border-cyan-200/40 hover:bg-white/[0.08] md:p-6"
               onClick={() => setSelectedProject(project)}
             >
               <div className="absolute -right-16 -top-16 h-36 w-36 rounded-full bg-cyan-400/20 blur-2xl transition group-hover:bg-violet-400/25" />
               <p className="text-sm uppercase tracking-[0.3em] text-cyan-200/90">{project.title}</p>
-              <p className="mt-3 text-xl font-semibold">{project.subtitle}</p>
+              <p className="mt-3 text-lg font-semibold md:text-xl">{project.subtitle}</p>
               <p className="mt-4 text-sm text-slate-300">{project.impact}</p>
               <div className="mt-5 flex flex-wrap gap-2">
                 {project.stack.map((tag) => (
@@ -248,22 +257,25 @@ function App() {
         </div>
       </section>
 
-      <section id="experience" className="reveal-section relative z-10 mx-auto max-w-6xl border-t border-white/10 px-6 py-28 md:px-10">
+      <section
+        id="experience"
+        className="reveal-section mobile-section relative z-10 mx-auto max-w-6xl border-t border-white/10 px-5 py-20 md:px-10 md:py-28"
+      >
         <p className="text-sm uppercase tracking-[0.35em] text-fuchsia-300/80">Experience</p>
-        <div className="mt-6 space-y-5">
+        <div className="mt-5 space-y-4 md:mt-6 md:space-y-5">
           {experienceItems.map((item) => (
             <button
               key={item.role}
               type="button"
               data-magnetic="true"
-              className="exp-card group relative w-full overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 text-left"
+              className="exp-card group relative w-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.06] p-5 text-left md:p-6"
               onClick={() => setSelectedExperience(item)}
             >
               <div className="exp-orb exp-orb-a" />
               <div className="exp-orb exp-orb-b" />
               <p className="exp-badge text-xs uppercase tracking-[0.22em] text-cyan-200/90">{item.badge}</p>
-              <h3 className="mt-2 text-xl font-semibold">{item.role}</h3>
-              <p className="mt-2 text-slate-300">{item.summary}</p>
+              <h3 className="mt-3 text-lg font-semibold leading-snug md:text-xl">{item.role}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-300 md:text-base">{item.summary}</p>
               <p className="mt-4 text-xs uppercase tracking-[0.2em] text-fuchsia-200/85">Click to view certificate</p>
             </button>
           ))}
@@ -272,7 +284,7 @@ function App() {
 
       {selectedProject && (
         <div className="fixed inset-0 z-[70] grid place-items-center bg-black/70 p-4 backdrop-blur-sm">
-          <div className="w-full max-w-xl rounded-2xl border border-white/20 bg-[#0a0a14] p-6">
+          <div className="modal-card w-full max-w-xl rounded-2xl border border-white/20 bg-[#0a0a14] p-5 md:p-6">
             <p className="text-xs uppercase tracking-[0.28em] text-cyan-300/90">Project Preview</p>
             <h3 className="mt-3 text-2xl font-semibold">{selectedProject.title}</h3>
             <p className="mt-3 text-slate-300">{selectedProject.subtitle}</p>
@@ -291,7 +303,7 @@ function App() {
 
       {selectedExperience && (
         <div className="fixed inset-0 z-[75] grid place-items-center bg-black/75 p-4 backdrop-blur-sm">
-          <div className="w-full max-w-2xl rounded-2xl border border-white/20 bg-[#0b0a16] p-5 md:p-6">
+          <div className="modal-card w-full max-w-2xl rounded-2xl border border-white/20 bg-[#0b0a16] p-5 md:p-6">
             <p className="text-xs uppercase tracking-[0.28em] text-fuchsia-300/90">Experience Certificate</p>
             <h3 className="mt-3 text-2xl font-semibold">{selectedExperience.role}</h3>
             <p className="mt-3 text-slate-300">{selectedExperience.summary}</p>
