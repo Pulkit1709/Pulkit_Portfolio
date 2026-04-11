@@ -1,8 +1,10 @@
-export const sectionIds = ["hero", "about", "projects", "experience"] as const;
+export const sectionIds = ["hero", "about", "experience", "projects", "skills", "contact"] as const;
 
 export const navItems = [
-  { label: "Hero", href: "#hero" },
+  { label: "Home", href: "#hero" },
   { label: "About", href: "#about" },
-  { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
+  { label: "Projects", href: "#projects" },
+  { label: "Skills", href: "#skills" },
+  { label: "Contact", href: "#contact" },
 ];

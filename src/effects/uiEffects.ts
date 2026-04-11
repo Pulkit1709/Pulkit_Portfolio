@@ -30,6 +30,7 @@ export function useUIEffects(enabled: boolean) {
     const magnetTargets = Array.from(document.querySelectorAll<HTMLElement>("[data-magnetic='true']"));
     const projectCards = Array.from(document.querySelectorAll<HTMLElement>(".project-card"));
     const expCards = Array.from(document.querySelectorAll<HTMLElement>(".exp-card"));
+    const skillCards = Array.from(document.querySelectorAll<HTMLElement>(".skill-card"));
     const revealSections = Array.from(document.querySelectorAll<HTMLElement>(".reveal-section"));
     const aboutShell = document.querySelector<HTMLElement>(".about-shell");
     const aboutStory = document.querySelector<HTMLElement>(".about-story");
@@ -62,7 +63,7 @@ export function useUIEffects(enabled: boolean) {
       onMove: (e: Event) => void;
       onLeave: () => void;
     }> = [];
-    [...projectCards, ...expCards].forEach((el) => {
+    [...projectCards, ...expCards, ...skillCards].forEach((el) => {
       const onMove = (event: Event) => {
         const e = event as PointerEvent;
         const rect = el.getBoundingClientRect();

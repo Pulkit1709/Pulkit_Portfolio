@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { CinematicHero } from "./components/hero/CinematicHero";
+import { ContactSection } from "./components/sections/ContactSection";
+import { SkillsSection } from "./components/sections/SkillsSection";
 import { navItems, sectionIds } from "./effects/scroll";
 import { useUIEffects } from "./effects/uiEffects";
 import { useIsMobile } from "./hooks/useIsMobile";
@@ -144,13 +146,13 @@ function App() {
   );
 
   return (
-    <div className="min-h-screen bg-[#05050a] text-white">
+    <div className="min-h-screen bg-[#05050a] pb-24 text-white md:pb-0">
       <div className="fixed left-0 top-0 z-50 h-1 w-full bg-white/5">
         <div className="h-full bg-gradient-to-r from-violet-400 via-cyan-300 to-fuchsia-300" style={{ width: `${progress * 100}%` }} />
       </div>
 
-      <nav className="fixed right-4 top-5 z-50 hidden rounded-full border border-white/15 bg-black/35 px-2 py-2 backdrop-blur md:block">
-        <ul className="flex items-center gap-1">
+      <nav className="fixed z-50 max-w-[calc(100vw-1.25rem)] rounded-full border border-white/15 bg-black/40 px-1.5 py-1.5 backdrop-blur-md md:right-4 md:top-5 md:max-w-none md:px-2 md:py-2 bottom-4 left-1/2 -translate-x-1/2 md:bottom-auto md:left-auto md:translate-x-0 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden md:overflow-visible">
+        <ul className="flex min-w-min flex-nowrap items-center gap-0.5 md:gap-1">
           {navItems.map((item) => {
             const id = item.href.slice(1) as (typeof sectionIds)[number];
             const active = activeSection === id;
@@ -159,7 +161,7 @@ function App() {
                 <a
                   data-magnetic="true"
                   href={item.href}
-                  className={`rounded-full px-4 py-2 text-xs uppercase tracking-[0.22em] transition ${
+                  className={`whitespace-nowrap rounded-full px-3 py-2 text-[0.65rem] uppercase tracking-[0.18em] transition md:px-4 md:text-xs md:tracking-[0.22em] ${
                     active ? "bg-white text-black" : "text-slate-300 hover:bg-white/10 hover:text-white"
                   }`}
                 >
@@ -237,6 +239,31 @@ function App() {
       </section>
 
       <section
+        id="experience"
+        className="reveal-section mobile-section relative z-10 mx-auto max-w-6xl border-t border-white/10 px-5 py-20 md:px-10 md:py-28"
+      >
+        <p className="text-sm uppercase tracking-[0.35em] text-fuchsia-300/80">Experience</p>
+        <div className="mt-5 space-y-4 md:mt-6 md:space-y-5">
+          {experienceItems.map((item) => (
+            <button
+              key={item.role}
+              type="button"
+              data-magnetic="true"
+              className="exp-card group relative w-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.06] p-5 text-left md:p-6"
+              onClick={() => setSelectedExperience(item)}
+            >
+              <div className="exp-orb exp-orb-a" />
+              <div className="exp-orb exp-orb-b" />
+              <p className="exp-badge text-xs uppercase tracking-[0.22em] text-cyan-200/90">{item.badge}</p>
+              <h3 className="mt-3 text-lg font-semibold leading-snug md:text-xl">{item.role}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-300 md:text-base">{item.summary}</p>
+              <p className="mt-4 text-xs uppercase tracking-[0.2em] text-fuchsia-200/85">Tap for role details</p>
+            </button>
+          ))}
+        </div>
+      </section>
+
+      <section
         id="projects"
         className="reveal-section mobile-section relative z-10 mx-auto max-w-6xl border-t border-white/10 px-5 py-20 md:px-10 md:py-28"
       >
@@ -276,30 +303,9 @@ function App() {
         </div>
       </section>
 
-      <section
-        id="experience"
-        className="reveal-section mobile-section relative z-10 mx-auto max-w-6xl border-t border-white/10 px-5 py-20 md:px-10 md:py-28"
-      >
-        <p className="text-sm uppercase tracking-[0.35em] text-fuchsia-300/80">Experience</p>
-        <div className="mt-5 space-y-4 md:mt-6 md:space-y-5">
-          {experienceItems.map((item) => (
-            <button
-              key={item.role}
-              type="button"
-              data-magnetic="true"
-              className="exp-card group relative w-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.06] p-5 text-left md:p-6"
-              onClick={() => setSelectedExperience(item)}
-            >
-              <div className="exp-orb exp-orb-a" />
-              <div className="exp-orb exp-orb-b" />
-              <p className="exp-badge text-xs uppercase tracking-[0.22em] text-cyan-200/90">{item.badge}</p>
-              <h3 className="mt-3 text-lg font-semibold leading-snug md:text-xl">{item.role}</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-300 md:text-base">{item.summary}</p>
-              <p className="mt-4 text-xs uppercase tracking-[0.2em] text-fuchsia-200/85">Click to view certificate</p>
-            </button>
-          ))}
-        </div>
-      </section>
+      <SkillsSection />
+
+      <ContactSection />
 
       {selectedProject && (
         <div className="fixed inset-0 z-[70] grid place-items-center bg-black/70 p-4 backdrop-blur-sm">
