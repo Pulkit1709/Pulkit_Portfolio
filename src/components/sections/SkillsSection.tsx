@@ -41,7 +41,7 @@ export function SkillsSection() {
       id="skills"
       className="reveal-section mobile-section relative z-10 mx-auto max-w-6xl border-t border-white/10 px-5 py-20 md:px-10 md:py-28"
     >
-      <p className="text-sm uppercase tracking-[0.35em] text-violet-300/80">Skills</p>
+      <p className="text-sm uppercase tracking-[0.35em] text-[#a098cc]">Skills</p>
       <h2 className="mt-4 max-w-2xl text-[2rem] font-semibold leading-tight md:text-5xl">
         Tools and stacks I ship with — <span className="gradient-word">animated</span> at a glance.
       </h2>

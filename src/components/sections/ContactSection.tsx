@@ -37,7 +37,7 @@ function ContactConstellation() {
   ];
   return (
     <svg
-      className="pointer-events-none absolute inset-0 h-full w-full text-[#99f6e4]"
+      className="pointer-events-none absolute inset-0 h-full w-full text-[#a098cc]"
       viewBox="0 0 100 70"
       preserveAspectRatio="xMidYMid slice"
       aria-hidden
@@ -47,7 +47,7 @@ function ContactConstellation() {
           <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} vectorEffect="non-scaling-stroke" />
         ))}
       </g>
-      <g fill="rgb(255 255 255 / 22%)">
+      <g fill="rgb(160 152 204 / 32%)">
         {nodes.map(([cx, cy], i) => (
           <circle key={i} cx={cx} cy={cy} r={0.35} />
         ))}
@@ -73,35 +73,39 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="reveal-section contact-shell relative z-10 overflow-hidden border-t border-[#99f6e4]/15 py-20 md:py-28"
+      className="reveal-section contact-shell relative z-10 overflow-hidden border-t border-[#a098cc]/12 py-20 md:py-28"
     >
-      <div className="pointer-events-none absolute inset-0 bg-[#0c1017]" aria-hidden />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgb(153_246_228/8%),transparent)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[#0a0a12]" aria-hidden />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_45%_at_50%_-10%,rgb(160_152_204/7%),transparent_50%),radial-gradient(ellipse_55%_35%_at_100%_100%,rgb(160_152_204/4%),transparent)]" />
       <ContactConstellation />
 
       <div className="relative mx-auto max-w-6xl px-5 md:px-10">
         <div className="text-center">
-          <h2 className="text-3xl font-semibold tracking-tight text-[#99f6e4] md:text-4xl">Get In Touch</h2>
-          <div className="mx-auto mt-3 h-0.5 w-14 rounded-full bg-[#99f6e4]" />
+          <h2 className="text-2xl font-semibold uppercase tracking-[0.32em] text-[#a098cc] md:text-3xl md:tracking-[0.35em]">
+            Get In Touch
+          </h2>
+          <div className="mx-auto mt-3 h-0.5 w-14 rounded-full bg-[#a098cc]/85" />
         </div>
 
         <div className="mt-14 grid gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-16">
           <div>
-            <h3 className="text-xl font-semibold text-[#99f6e4] md:text-2xl">Let&apos;s Connect</h3>
+            <h3 className="text-xl font-semibold uppercase tracking-[0.2em] text-[#a098cc] md:text-2xl md:tracking-[0.22em]">
+              Let&apos;s Connect
+            </h3>
             <p className="mt-3 max-w-md text-sm leading-relaxed text-slate-400 md:text-base">
               Have a project in mind or just want to chat? Feel free to reach out!
             </p>
 
             <div className="mt-8 space-y-4">
-              <div className="flex items-start gap-4 rounded-xl border border-white/[0.08] bg-[#1a222e] p-4 md:p-5">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#111827] text-[#99f6e4]">
+              <div className="flex items-start gap-4 rounded-xl border border-[#a098cc]/10 bg-[#0e0e16] p-4 md:p-5">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#12101c] text-[#a098cc]">
                   <FaPhone className="h-4 w-4" aria-hidden />
                 </span>
                 <div className="min-w-0 flex-1">
-                  <p className="text-xs font-medium uppercase tracking-[0.2em] text-slate-500">Phone</p>
-                  <p className="mt-1 text-sm text-slate-300">Under process — update soon</p>
+                  <p className="text-xs font-medium uppercase tracking-[0.2em] text-[#a098cc]/75">Phone</p>
+                  <p className="mt-1 text-sm text-slate-400">Under process — update soon</p>
                 </div>
-                <span className="shrink-0 rounded-md border border-[#99f6e4]/25 bg-[#99f6e4]/10 px-2 py-1 text-[0.65rem] font-medium uppercase tracking-wider text-[#99f6e4]">
+                <span className="shrink-0 rounded-md border border-[#a098cc]/25 bg-[#a098cc]/10 px-2 py-1 text-[0.65rem] font-medium uppercase tracking-wider text-[#a098cc]">
                   Coming soon
                 </span>
               </div>
@@ -109,20 +113,20 @@ export function ContactSection() {
               <a
                 data-magnetic="true"
                 href={`mailto:${OWNER_EMAIL}`}
-                className="flex items-start gap-4 rounded-xl border border-white/[0.08] bg-[#1a222e] p-4 transition hover:border-[#99f6e4]/25 md:p-5"
+                className="flex items-start gap-4 rounded-xl border border-[#a098cc]/10 bg-[#0e0e16] p-4 transition hover:border-[#a098cc]/28 md:p-5"
               >
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#111827] text-[#99f6e4]">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#12101c] text-[#a098cc]">
                   <FaEnvelope className="h-4 w-4" aria-hidden />
                 </span>
                 <div className="min-w-0">
-                  <p className="text-xs font-medium uppercase tracking-[0.2em] text-slate-500">Email</p>
-                  <p className="mt-1 break-all text-sm text-slate-200">{OWNER_EMAIL}</p>
+                  <p className="text-xs font-medium uppercase tracking-[0.2em] text-[#a098cc]/75">Email</p>
+                  <p className="mt-1 break-all text-sm text-slate-300">{OWNER_EMAIL}</p>
                 </div>
               </a>
             </div>
 
             <div className="mt-10">
-              <p className="text-xs font-medium uppercase tracking-[0.28em] text-slate-500">Connect with me</p>
+              <p className="text-xs font-medium uppercase tracking-[0.35em] text-[#a098cc]">Connect with me</p>
               <div className="mt-4 flex flex-wrap gap-3">
                 {socialLinks.map(({ label, Icon, href }) => (
                   <a
@@ -131,7 +135,7 @@ export function ContactSection() {
                     href={href}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/[0.08] bg-[#1f2937] text-white transition hover:border-[#99f6e4]/35 hover:text-[#99f6e4]"
+                    className="flex h-11 w-11 items-center justify-center rounded-xl border border-[#a098cc]/12 bg-[#0e0e16] text-slate-200 transition hover:border-[#a098cc]/35 hover:text-[#a098cc]"
                     aria-label={label}
                   >
                     <Icon className="h-[1.1rem] w-[1.1rem]" />
@@ -143,11 +147,11 @@ export function ContactSection() {
 
           <form
             onSubmit={onSubmit}
-            className="rounded-2xl border border-white/[0.08] bg-[#141b24]/90 p-6 backdrop-blur-sm md:p-8"
+            className="rounded-2xl border border-[#a098cc]/12 bg-[#0e0e16]/95 p-6 backdrop-blur-sm md:p-8"
           >
             <div className="space-y-5">
               <div>
-                <label htmlFor="contact-name" className="text-sm text-slate-400">
+                <label htmlFor="contact-name" className="text-sm text-[#a098cc]/80">
                   Name
                 </label>
                 <input
@@ -158,11 +162,11 @@ export function ContactSection() {
                   placeholder="Enter your name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="contact-input mt-2 w-full rounded-xl border border-white/[0.1] bg-[#1f2937] px-4 py-3 text-sm text-white placeholder:text-slate-600 focus:border-[#99f6e4]/45 focus:outline-none focus:ring-2 focus:ring-[#99f6e4]/20"
+                  className="contact-input mt-2 w-full rounded-xl border border-[#a098cc]/12 bg-[#12101c] px-4 py-3 text-sm text-white placeholder:text-slate-600 focus:border-[#a098cc]/45 focus:outline-none focus:ring-2 focus:ring-[#a098cc]/18"
                 />
               </div>
               <div>
-                <label htmlFor="contact-email" className="text-sm text-slate-400">
+                <label htmlFor="contact-email" className="text-sm text-[#a098cc]/80">
                   Email
                 </label>
                 <input
@@ -173,11 +177,11 @@ export function ContactSection() {
                   placeholder="Enter your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="contact-input mt-2 w-full rounded-xl border border-white/[0.1] bg-[#1f2937] px-4 py-3 text-sm text-white placeholder:text-slate-600 focus:border-[#99f6e4]/45 focus:outline-none focus:ring-2 focus:ring-[#99f6e4]/20"
+                  className="contact-input mt-2 w-full rounded-xl border border-[#a098cc]/12 bg-[#12101c] px-4 py-3 text-sm text-white placeholder:text-slate-600 focus:border-[#a098cc]/45 focus:outline-none focus:ring-2 focus:ring-[#a098cc]/18"
                 />
               </div>
               <div>
-                <label htmlFor="contact-message" className="text-sm text-slate-400">
+                <label htmlFor="contact-message" className="text-sm text-[#a098cc]/80">
                   Message
                 </label>
                 <textarea
@@ -187,14 +191,14 @@ export function ContactSection() {
                   placeholder="Enter your message"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  className="contact-input mt-2 w-full resize-y rounded-xl border border-white/[0.1] bg-[#1f2937] px-4 py-3 text-sm text-white placeholder:text-slate-600 focus:border-[#99f6e4]/45 focus:outline-none focus:ring-2 focus:ring-[#99f6e4]/20"
+                  className="contact-input mt-2 w-full resize-y rounded-xl border border-[#a098cc]/12 bg-[#12101c] px-4 py-3 text-sm text-white placeholder:text-slate-600 focus:border-[#a098cc]/45 focus:outline-none focus:ring-2 focus:ring-[#a098cc]/18"
                 />
               </div>
             </div>
             <button
               type="submit"
               data-magnetic="true"
-              className="mt-8 flex w-full items-center justify-center gap-2 rounded-xl bg-[#99f6e4] py-3.5 text-sm font-semibold text-[#0f172a] transition hover:bg-[#b5f5e8] md:text-base"
+              className="mt-8 flex w-full items-center justify-center gap-2 rounded-xl bg-[#a098cc] py-3.5 text-sm font-semibold text-[#0a0a12] transition hover:bg-[#b8b0d4] md:text-base"
             >
               Send Message
               <FaArrowRight className="h-4 w-4" aria-hidden />

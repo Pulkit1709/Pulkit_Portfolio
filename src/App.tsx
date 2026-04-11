@@ -184,7 +184,7 @@ function App() {
             <span key={`about-particle-${idx}`} style={{ ["--delay" as string]: `${idx * 0.4}s` }} />
           ))}
         </div>
-        <p className="text-sm uppercase tracking-[0.35em] text-violet-300/80">About</p>
+        <p className="text-sm uppercase tracking-[0.35em] text-[#a098cc]">About</p>
         <div className="mt-6 grid items-start gap-8 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="about-story self-start space-y-4 rounded-3xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur md:space-y-5 md:p-8">
             <h2 className="max-w-2xl text-[2rem] font-semibold leading-tight md:text-5xl">
@@ -224,7 +224,7 @@ function App() {
       </section>
 
       <section className="reveal-section mobile-section relative z-10 mx-auto max-w-6xl px-5 pb-12 md:px-10">
-        <p className="text-sm uppercase tracking-[0.35em] text-cyan-300/80">What I Focus On</p>
+        <p className="text-sm uppercase tracking-[0.35em] text-[#a098cc]">What I Focus On</p>
         <div className="mt-5 grid gap-3 md:mt-6 md:gap-4 md:grid-cols-3">
           {focusCards.map((card) => (
             <article key={card.title} className="focus-card rounded-2xl border border-white/12 bg-white/[0.05] p-4 md:p-5">
@@ -242,7 +242,7 @@ function App() {
         id="experience"
         className="reveal-section mobile-section relative z-10 mx-auto max-w-6xl border-t border-white/10 px-5 py-20 md:px-10 md:py-28"
       >
-        <p className="text-sm uppercase tracking-[0.35em] text-fuchsia-300/80">Experience</p>
+        <p className="text-sm uppercase tracking-[0.35em] text-[#a098cc]">Experience</p>
         <div className="mt-5 space-y-4 md:mt-6 md:space-y-5">
           {experienceItems.map((item) => (
             <button
@@ -267,7 +267,7 @@ function App() {
         id="projects"
         className="reveal-section mobile-section relative z-10 mx-auto max-w-6xl border-t border-white/10 px-5 py-20 md:px-10 md:py-28"
       >
-        <p className="text-sm uppercase tracking-[0.35em] text-cyan-300/80">Projects</p>
+        <p className="text-sm uppercase tracking-[0.35em] text-[#a098cc]">Projects</p>
         <h2 className="mt-4 text-[2rem] font-semibold leading-tight md:text-5xl">High-impact AI and engineering work.</h2>
         <div className="mt-7 grid gap-4 md:mt-10 md:gap-5 md:grid-cols-2">
           {projectCards.map((project) => (
