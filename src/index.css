@@ -39,6 +39,88 @@ body {
   }
 }
 
+/* Electric click feedback (see useElectricClick) */
+@keyframes electric-burst {
+  0% {
+    filter: brightness(1) saturate(1);
+    box-shadow:
+      0 0 0 0 transparent,
+      0 0 0 0 transparent,
+      inset 0 0 0 transparent;
+  }
+  18% {
+    filter: brightness(1.42) saturate(1.22);
+    box-shadow:
+      0 0 0 1px rgb(165 243 252 / 95%),
+      0 0 22px 5px rgb(34 211 238 / 55%),
+      0 0 48px 12px rgb(139 92 246 / 32%),
+      inset 0 0 28px rgb(34 211 238 / 14%);
+  }
+  38% {
+    filter: brightness(1.18) saturate(1.08);
+    box-shadow:
+      0 0 0 1px rgb(192 132 252 / 90%),
+      0 0 18px 4px rgb(167 139 250 / 45%),
+      0 0 36px 8px rgb(34 211 238 / 28%),
+      inset 0 0 20px rgb(167 139 250 / 12%);
+  }
+  58% {
+    filter: brightness(1.35) saturate(1.18);
+    box-shadow:
+      0 0 0 1px rgb(34 211 238 / 85%),
+      0 0 26px 6px rgb(34 211 238 / 40%),
+      0 0 40px 10px rgb(139 92 246 / 25%),
+      inset 0 0 24px rgb(34 211 238 / 16%);
+  }
+  100% {
+    filter: brightness(1) saturate(1);
+    box-shadow:
+      0 0 0 0 transparent,
+      0 0 0 0 transparent,
+      inset 0 0 0 transparent;
+  }
+}
+
+@keyframes electric-burst-inset {
+  0% {
+    filter: brightness(1) saturate(1);
+    box-shadow: inset 0 0 0 transparent;
+  }
+  22% {
+    filter: brightness(1.38) saturate(1.2);
+    box-shadow:
+      inset 0 0 0 1px rgb(165 243 252 / 70%),
+      inset 0 0 48px rgb(34 211 238 / 28%),
+      inset 0 0 90px rgb(139 92 246 / 12%);
+  }
+  48% {
+    filter: brightness(1.22) saturate(1.1);
+    box-shadow:
+      inset 0 0 0 1px rgb(192 132 252 / 55%),
+      inset 0 0 40px rgb(167 139 250 / 22%),
+      inset 0 0 72px rgb(34 211 238 / 10%);
+  }
+  72% {
+    filter: brightness(1.28) saturate(1.12);
+    box-shadow:
+      inset 0 0 0 1px rgb(34 211 238 / 50%),
+      inset 0 0 52px rgb(34 211 238 / 18%),
+      inset 0 0 80px rgb(139 92 246 / 8%);
+  }
+  100% {
+    filter: brightness(1) saturate(1);
+    box-shadow: inset 0 0 0 transparent;
+  }
+}
+
+.electric-click {
+  animation: electric-burst 440ms cubic-bezier(0.33, 1, 0.68, 1) forwards;
+}
+
+.electric-click.electric-click--clip {
+  animation-name: electric-burst-inset;
+}
+
 .cursor-glow {
   position: fixed;
   top: -9px;

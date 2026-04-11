@@ -38,7 +38,7 @@ class AvatarErrorBoundary extends Component<{ children: ReactNode }, { hasError:
   }
 }
 
-function CameraRig({ reducedMotion }: { reducedMotion: boolean }) {
+function CameraRig({ reducedMotion, isMobile }: { reducedMotion: boolean; isMobile: boolean }) {
   const { camera, pointer } = useThree();
   const wrapper = useRef({
     x: camera.position.x,
@@ -47,6 +47,14 @@ function CameraRig({ reducedMotion }: { reducedMotion: boolean }) {
     rx: camera.rotation.x,
     ry: camera.rotation.y,
   });
+
+  useEffect(() => {
+    wrapper.current.x = 0;
+    wrapper.current.y = isMobile ? 0.2 : 0.1;
+    wrapper.current.z = isMobile ? 6.25 : 5;
+    wrapper.current.rx = 0;
+    wrapper.current.ry = 0;
+  }, [isMobile]);
 
   useEffect(() => {
     if (reducedMotion) return;
@@ -148,18 +156,18 @@ export default function HeroCanvas() {
       shadows={!isMobile}
       gl={{ antialias: !isMobile, alpha: true, powerPreference: "high-performance" }}
       performance={{ min: 0.6 }}
-      camera={{ position: [0, 0.1, 5], fov: 32 }}
+      camera={{ position: [0, isMobile ? 0.2 : 0.1, isMobile ? 6.25 : 5], fov: isMobile ? 38 : 32 }}
       frameloop={isVisible ? "always" : "never"}
     >
       <Suspense fallback={null}>
-        <PerspectiveCamera makeDefault position={[0, 0.1, 5]} fov={32} />
+        <PerspectiveCamera makeDefault position={[0, isMobile ? 0.2 : 0.1, isMobile ? 6.25 : 5]} fov={isMobile ? 38 : 32} />
         <SceneLighting isMobile={isMobile} />
         <BackgroundOrbs reducedMotion={reducedMotion || isMobile} isMobile={isMobile} />
         <AvatarErrorBoundary>
           <AvatarRig reducedMotion={reducedMotion || isMobile} />
         </AvatarErrorBoundary>
         <Environment preset="city" environmentIntensity={0.35} />
-        <CameraRig reducedMotion={reducedMotion || isMobile} />
+        <CameraRig reducedMotion={reducedMotion || isMobile} isMobile={isMobile} />
       </Suspense>
     </Canvas>
   );

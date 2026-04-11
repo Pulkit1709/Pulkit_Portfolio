@@ -3,6 +3,7 @@ import { CinematicHero } from "./components/hero/CinematicHero";
 import { ContactSection } from "./components/sections/ContactSection";
 import { SkillsSection } from "./components/sections/SkillsSection";
 import { navItems, sectionIds } from "./effects/scroll";
+import { useElectricClick } from "./effects/useElectricClick";
 import { useUIEffects } from "./effects/uiEffects";
 import { useIsMobile } from "./hooks/useIsMobile";
 
@@ -85,6 +86,7 @@ function App() {
   const [selectedProject, setSelectedProject] = useState<ProjectCard | null>(null);
   const [selectedExperience, setSelectedExperience] = useState<ExperienceItem | null>(null);
   useUIEffects(!isMobile);
+  useElectricClick();
 
   useEffect(() => {
     const onScroll = () => {

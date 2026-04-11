@@ -1,5 +1,5 @@
 import { useTexture } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { useEffect, useMemo, useRef } from "react";
 import type { Group, Mesh } from "three";
 import { CanvasTexture, MathUtils, NoColorSpace } from "three";
@@ -33,7 +33,27 @@ export function AvatarRig({ reducedMotion }: { reducedMotion: boolean }) {
   const portrait = useRef<Mesh>(null);
   const frame = useRef<Mesh>(null);
   const glow = useRef<Mesh>(null);
+  const { width: viewW, height: viewH } = useThree((s) => s.size);
   const texture = useTexture(AVATAR_IMAGE_URL);
+
+  /** Scales and repositions the portrait for narrow / portrait viewports (phones). */
+  const layout = useMemo(() => {
+    if (viewW >= 768) {
+      return { rootY: -1.15, rootScale: 1.7 };
+    }
+    const portrait = viewH > viewW;
+    const narrow = Math.min(1, viewW / 420);
+    if (portrait) {
+      return {
+        rootY: -0.28 - (1 - narrow) * 0.55,
+        rootScale: 0.78 + narrow * 0.55,
+      };
+    }
+    return {
+      rootY: -0.72,
+      rootScale: 1.05 + narrow * 0.35,
+    };
+  }, [viewW, viewH]);
   const circleAlpha = useMemo(() => createCircleAlphaTexture(), []);
   const pointerTarget = useRef({ x: 0, y: 0 });
   const blink = useRef(0);
@@ -129,7 +149,7 @@ export function AvatarRig({ reducedMotion }: { reducedMotion: boolean }) {
   const ringOuter = r * 1.06;
 
   return (
-    <group ref={root} position={[0, -1.15, 0]} scale={1.7}>
+    <group ref={root} position={[0, layout.rootY, 0]} scale={layout.rootScale}>
       <mesh ref={glow} position={[0, 0.08, -0.2]}>
         <circleGeometry args={[ringOuter * 1.08, 48]} />
         <meshBasicMaterial color="#8b5cf6" transparent opacity={0.22} />
